@@ -244,24 +244,27 @@ conectorSQL s = new conectorSQL();
 
     private void jButton1ActionPerfomed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerfomed
       Connection conexion = null;
+      int res = 0;
        try{
        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
        String url = "jdbc:sqlserver://CARLOS:1433;databaseName=TechD;user=carlos.chamorro;password=12345";
        conexion = DriverManager.getConnection(url);
-       String sql = "Select * from Login where Username="+User.getText()+"AND Pass="+Pass.getText()+"";
+       String user = User.getText();
+       String pass = String.valueOf(Pass.getText());
+       String sql = "SELECT * from Login where UserName='"+user+"' and Pass='"+pass+"'";
        Statement st = conexion.createStatement();
        ResultSet rs = st.executeQuery(sql);
          if(rs.next()){
                JOptionPane.showMessageDialog(null, "Bienvenido al sistema");
-               Registrarse r1 = new Registrarse();
-               this.setVisible(false);
-               r1.setVisible(true);
+               PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
+               this.dispose();
+               pantallaPrincipal.setVisible(true);
+                }
+         else{
+                    JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+                }
          }
-         else {
-            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-   
-            }catch(ClassNotFoundException | SQLException e){
+            catch(ClassNotFoundException | SQLException e){
        
         }
       
@@ -286,31 +289,6 @@ conectorSQL s = new conectorSQL();
     }//GEN-LAST:event_jButton1ActionPerfomed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-    Connection conexion = null;
-    
-            try{
-          Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-       String url = "jdbc:sqlserver://CARLOS:1433;databaseName=TechD;user=carlos.chamorro;password=12345";
-       conexion = DriverManager.getConnection(url);
-       Statement st = conexion.createStatement();
-       String user = User.getText();
-       String pass = Pass.getText();
-       String sql = "Select * from Login where Username="+User.getText()+" and Pass="+Pass.getText()+"";
-       if(user.equals("") || pass.equals("")){
-           JOptionPane.showMessageDialog(null, "No puede dejar espacios en blanco", "Error", JOptionPane.ERROR_MESSAGE);
-       }
-            ResultSet rs = st.executeQuery(sql);
-         if(rs.next()){
-               JOptionPane.showMessageDialog(null, "Bienvenido al sistema");
-         }
-         else
-         {
-            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
-         return;
-         }
-        }catch(ClassNotFoundException | SQLException e){
-            
-        }
    
     }//GEN-LAST:event_jButton1MouseClicked
 
