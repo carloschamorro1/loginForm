@@ -30,6 +30,8 @@ conectorSQL s = new conectorSQL();
         initComponents();
         holder = new PlaceHolder(User,"Username");
         holder = new PlaceHolder(Pass,"Password");
+        this.wrongPass.setVisible(false);
+        this.tryAgain.setVisible(false);
         this.setTitle("Login");
         this.setBackground(Color.yellow);
         this.setLocationRelativeTo(null);
@@ -62,6 +64,8 @@ conectorSQL s = new conectorSQL();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        wrongPass = new javax.swing.JLabel();
+        tryAgain = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -131,6 +135,11 @@ conectorSQL s = new conectorSQL();
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Titulo.png"))); // NOI18N
 
+        wrongPass.setForeground(new java.awt.Color(255, 0, 0));
+        wrongPass.setText("Wrong password or username");
+
+        tryAgain.setText("Try Again");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,9 +156,15 @@ conectorSQL s = new conectorSQL();
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(wrongPass, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tryAgain))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)))))
                 .addContainerGap(73, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -184,7 +199,11 @@ conectorSQL s = new conectorSQL();
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addGap(76, 76, 76))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(wrongPass)
+                    .addComponent(tryAgain))
+                .addGap(44, 44, 44))
         );
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);
@@ -262,9 +281,10 @@ conectorSQL s = new conectorSQL();
                pantallaPrincipal.setVisible(true);
                 }
          else{
-                    JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+                   this.wrongPass.setVisible(true);
+                   this.tryAgain.setVisible(true);
                 }
-         }
+            }
             catch(ClassNotFoundException | SQLException e){
        
         }
@@ -352,6 +372,8 @@ conectorSQL s = new conectorSQL();
     private javax.swing.JPopupMenu jPopupMenu1;
     private keeptoo.KGradientPanel kGradientPanel1;
     private javax.swing.JLabel passIcon;
+    private javax.swing.JLabel tryAgain;
     private javax.swing.JLabel usericon;
+    private javax.swing.JLabel wrongPass;
     // End of variables declaration//GEN-END:variables
 }
