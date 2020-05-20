@@ -85,7 +85,8 @@ conectorSQL s = new conectorSQL();
         jButton1.setBackground(new java.awt.Color(0, 153, 51));
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Login");
+        jButton1.setText("Sign in");
+        jButton1.setActionCommand("Sign in");
         jButton1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jButton1FocusGained(evt);
@@ -117,7 +118,7 @@ conectorSQL s = new conectorSQL();
         jLabel1.setText("Don't you have an account?");
 
         jLabel2.setForeground(new java.awt.Color(51, 51, 255));
-        jLabel2.setText("Create One");
+        jLabel2.setText("Sign up");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -191,16 +192,16 @@ conectorSQL s = new conectorSQL();
         kGradientPanel1Layout.setHorizontalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                .addContainerGap(268, Short.MAX_VALUE)
+                .addContainerGap(250, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(232, 232, 232))
+                .addGap(250, 250, 250))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel1Layout.createSequentialGroup()
-                .addContainerGap(96, Short.MAX_VALUE)
+                .addContainerGap(75, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                .addGap(74, 74, 74))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -256,7 +257,6 @@ conectorSQL s = new conectorSQL();
        Statement st = conexion.createStatement();
        ResultSet rs = st.executeQuery(sql);
          if(rs.next()){
-               JOptionPane.showMessageDialog(null, "Bienvenido al sistema");
                PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
                this.dispose();
                pantallaPrincipal.setVisible(true);

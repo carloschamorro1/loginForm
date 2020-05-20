@@ -29,6 +29,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
         this.setTitle("Bienvenido");
         initComponents();
         sonido("2");   
+        this.setLocationRelativeTo(null);
          this.setIconImage(new ImageIcon(getClass().getResource("/Imagenes/User_Circle2.png")).getImage());
     }
      public void sonido(String archivo){
