@@ -21,14 +21,13 @@ public class PantallaPrincipal extends javax.swing.JFrame {
       public Clip clip;
     public String ruta = "/Sonido/";
     public VentanaLogin v1;
-    
     /**
      * Creates new form PantallaPrincipal
      */
     public PantallaPrincipal() {
         this.setTitle("Bienvenido");
         initComponents();
-        sonido("2");   
+        //sonido("2");   
         this.setLocationRelativeTo(null);
          this.setIconImage(new ImageIcon(getClass().getResource("/Imagenes/User_Circle2.png")).getImage());
     }
@@ -54,7 +53,7 @@ public class PantallaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Calla peruano.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ea1cc57e-6913-4163-9a53-241011b4658b.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
