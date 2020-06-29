@@ -19,7 +19,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 public class VentanaLogin extends javax.swing.JFrame {
 PlaceHolder holder;
-conectorSQL s = new conectorSQL();
+Connection con = ConectorSQL.obtenerConexion();
+
 
     /**
      * Creates new form VentanaLogin
@@ -28,8 +29,8 @@ conectorSQL s = new conectorSQL();
      */
     public VentanaLogin() throws ClassNotFoundException, SQLException {
         initComponents();
-        holder = new PlaceHolder(User,"Username");
-        holder = new PlaceHolder(Pass,"Password");
+       // holder = new PlaceHolder(User,"Username");
+       // holder = new PlaceHolder(Pass,"Password");
         this.wrongPass.setVisible(false);
         this.tryAgain.setVisible(false);
         this.setTitle("Login");
@@ -267,49 +268,31 @@ conectorSQL s = new conectorSQL();
     }//GEN-LAST:event_jButton1FocusGained
 
     private void jButton1ActionPerfomed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerfomed
-      Connection conexion = null;
-      int res = 0;
-       try{
-       Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-       String url = "jdbc:sqlserver://CARLOS:1433;databaseName=TechD;user=carlos.chamorro;password=12345";
-       conexion = DriverManager.getConnection(url);
-       String user = User.getText();
+
+      int res = 0; 
+        try {
+       String usuario = User.getText();
        String pass = String.valueOf(Pass.getText());
-       String sql = "SELECT * from Login where UserName='"+user+"' and Pass='"+pass+"'";
-       Statement st = conexion.createStatement();
+       String sql = "SELECT * from Login where UserName ='" +usuario+ "' and Pass='"+pass+"'";
+        Statement st = con.createStatement();
        ResultSet rs = st.executeQuery(sql);
-         if(rs.next()){
-               PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
-               this.dispose();
-               pantallaPrincipal.setVisible(true);
-                }
-         else{
-                   this.wrongPass.setVisible(true);
-                   this.tryAgain.setVisible(true);
-                }
-            }
-            catch(ClassNotFoundException | SQLException e){
-       
-        }
-      
-       /*
-       if(){
-        JOptionPane.showMessageDialog(null, "Por favor llene todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+       if(isEmpty()){
+        JOptionPane.showMessageDialog(null, "Por favor llene todos los campos", "Error", JOptionPane.INFORMATION_MESSAGE);
         return;
        }
-       if(){
-       String sql ="Insert into Login values('"+user.getText()+"','"+pass.getText()+"','"+nombre.getText()+"','"+apellido.getText()+"')";
-       JOptionPane.showMessageDialog(null,"Usuario Creado Exitosamente");
-       setVisible(false);
-       ResultSet rs = st.executeQuery(sql);
-       }
-       else{
-           JOptionPane.showMessageDialog(null,"Usuario ya existe");
-       }
+        if(rs.next()){  
+        PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
+        pantallaPrincipal.setVisible(true);
+        this.dispose();
+        }
+                else{
+                    JOptionPane.showMessageDialog(null, "Las credenciales no concuerdan", "Error", JOptionPane.ERROR_MESSAGE);
+                }
        
-     */
-     
-  
+    } catch (SQLException e) {
+         JOptionPane.showMessageDialog(null,e.getMessage());
+    }
+    
     }//GEN-LAST:event_jButton1ActionPerfomed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -360,6 +343,12 @@ conectorSQL s = new conectorSQL();
     public String getUser(){
        return User.toString();
    }
+    private boolean isEmpty(){
+        if("".equals(User.getText()) || "".equals(Pass.getText()))
+        return true;
+        else
+            return false;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField Pass;
